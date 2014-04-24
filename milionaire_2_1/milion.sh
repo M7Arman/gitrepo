@@ -224,8 +224,13 @@ print_question () {
 
 #   function for check of answer
 check_answer () {
-    echo -ne "\nyour answer: "
-    read answ
+    echo
+    if ! read -t 30 -p "Your answer:" answ; then
+        echo -e "\n\n  ***TIME OUT***\n\n" >&2
+        over_func
+        menu_func
+    fi
+
     if [[ "$answ" == "${arr[$FILE_NAME]}"  ]]; then
         let "SCORE += 100"
         clear
@@ -259,18 +264,14 @@ check_answer () {
             "A"|"a"|"B"|"b"|"C"|"c"|"D"|"d")over_func
                 menu_func;;
             "G" | "g" )
-                google_func
-                ;;
+                google_func;;
             "F" | "f" )
-                fifty_func
-                ;;
+                fifty_func;;
             "T" | "t" )
-                change_func
-                ;;
+                change_func;;
             * )
                 echo "Answer not found!"  
-                check_answer
-                ;;
+                check_answer;;
         esac
     fi
 }
