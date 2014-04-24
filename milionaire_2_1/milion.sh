@@ -65,7 +65,7 @@ nickname () {
 clear
 echo
 echo -n "Enter your nickname and press [ENTER] :  "
-read nickname
+read NICK
 }
 
 #############First clue ######################################
@@ -134,7 +134,7 @@ QUESTION_CURRENT=0 # Question current
 clear
 echo
 echo "************ MENU *************"
-echo "Hi $nickname, choose... "
+echo "Hi $NICK, choose... "
 echo "1. Play! "
 echo -n "2. Record --> "
 cat "$LIST_NAME"
@@ -204,10 +204,27 @@ done
 #   function print of question
 print_question () {
 let "QUESTION_CURRENT += 1"
-echo "50/50 [F]    google [G]    Change the question  [T]  "
-echo
+
+if [[ "$FIFTY" == "0" ]]; then
+    echo -n " 50/50 [F]  "
+else
+    echo  -ne "\e[31m 50/50 [F]  \e[0m"
+fi
+
+if [[ "$GOOGLE" == "0" ]]; then
+    echo -n " google [G]  "
+else
+    echo  -ne "\e[31m google [G]  \e[0m"
+fi
+
+if [[ "$CHANGE" == "0" ]]; then
+    echo " Change the question  [T]  "
+else
+    echo  -e "\e[31m Change the question  [T]  \e[0m"
+fi
+
 # Poxel cat-i
-echo -n "$QUESTION_CURRENT) "    
+echo -en "\n$QUESTION_CURRENT) "    
 while read line
 do
     echo -e "$line"
@@ -223,7 +240,7 @@ if [[ "$answ" == "${arr[$FILE_NAME]}"  ]]; then
     let "SCORE += 100"
     clear
     echo -e "\nRight!"
-    echo "your score $nickname: $SCORE"
+    echo "your score $NICK: $SCORE"
 if [ "$SCORE" -eq "1000" ]; then
     clear
     echo -e "\nYOU WIN!!"
@@ -261,7 +278,7 @@ else
       change_func
       ;;
    * )
-     echo "Command not found!"  
+     echo "Answer not found!"  
      check_answer
       ;;
 esac
@@ -269,9 +286,9 @@ fi
     }
 
 over_func () {    
-    echo -e "\nright answer: ${arr[$FILE_NAME]}"
+    echo -e "\nRight answer: ${arr[$FILE_NAME]}"
     echo -e "\n***GAME OVER!***"
-    echo -e "\n\nYour score $nickname: $SCORE "
+    echo -e "\n\nYour score $NICK: $SCORE "
     max_score_func
     let  "SCORE=0"
     echo -e "\nPress ENTER for exit."
@@ -286,7 +303,7 @@ SUM=$(($SUM+$line3))
 done<$LIST
 if [[ "$SCORE" > "$SUM" ]]; then
     echo "$SCORE" > $LIST
-    echo "$nickname" > $LIST_NAME
+    echo "$NICK" > $LIST_NAME
 fi
 
 }
