@@ -32,61 +32,56 @@ LIST_NAME=record/nick
 
 #   function for record list
 record () {    
-clear
-echo -n " The record belongs to:  "
-cat "$LIST_NAME"
-echo "Go back [ENTER]"
-read
-menu_func
+    clear
+    echo -n " The record belongs to:  "
+    cat "$LIST_NAME"
+    echo "Go back [ENTER]"
+    read
+    menu_func
 }
 
 #   function for exit mode
 exit_func () {
-clear
-echo "EXIT? [Y/n]"
-read yes_no
-case "$yes_no" in
-    "Y" | "y" | "yes" | "Yes" )
     clear
-    exit
-    ;;
-    "N" | "n" | "No" | "no" )
-    menu_func
-    ;;
-    * )
-    echo "not found!"
-    exit_func
-    ;;
-esac
+    echo "EXIT? [Y/n]"
+    read yes_no
+    case "$yes_no" in
+        "Y" | "y" | "yes" | "Yes" )
+            clear
+            exit
+            ;;
+        "N" | "n" | "No" | "no" )
+            menu_func
+            ;;
+        * )
+            echo "not found!"
+            exit_func
+            ;;
+    esac
 }
 
 #   function for choose name.
 nickname () { 
-clear
-echo
-echo -n "Enter your nickname and press [ENTER] :  "
-read NICK
+    clear
+    echo
+    echo -n "Enter your nickname and press [ENTER] :  "
+    read NICK
 }
 
 #############First clue ######################################
 google_func () {
     if [ "$GOOGLE" == "0" ]; then
-GOOGLE=1        
-echo ""
-xdg-open 'http://www.google.com'
-sleep 20
-#`pkill firefox`
-`pkill chrome`
-sleep 3
-#clear
-#let "QUESTION_CURRENT -= 1"
-#print_question
-#check_answer
-fi
-clear
-let "QUESTION_CURRENT -= 1"
-print_question
-check_answer
+        GOOGLE=1        
+        echo ""
+        xdg-open 'http://www.google.com'
+        sleep 20
+        `pkill chrome`
+        sleep 3
+    fi
+    clear
+    let "QUESTION_CURRENT -= 1"
+    print_question
+    check_answer
 }
 
 ############ Second clue ######################################
@@ -114,52 +109,49 @@ fi
 
 ########### Third clue ######################################
 change_func () {
-if [ "$CHANGE" == "0" ]; then
-    CHANGE=1
-    let "QUESTION_CURRENT -= 1"
+    if [ "$CHANGE" == "0" ]; then
+        CHANGE=1
+        let "QUESTION_CURRENT -= 1"
+        clear
+        step
+    fi
     clear
-    step
-fi
-clear
-let "QUESTION_CURRENT -= 1"
-print_question
-check_answer
-#echo "Hi"
+    let "QUESTION_CURRENT -= 1"
+    print_question
+    check_answer
 }
 
 #############################################################
 #   function for menu
 menu_func () {
-QUESTION_CURRENT=0 # Question current
-clear
-echo
-echo "************ MENU *************"
-echo "Hi $NICK, choose... "
-echo "1. Play! "
-echo -n "2. Record --> "
-cat "$LIST_NAME"
-echo "3. Exit "
-echo "******************************* "
-echo
-echo -n "choose: "
-read menu
-
-case "$menu" in
-    "1") 
-    play
-    ;;
-    "2")
-    record
-    ;;
-    "3")
-    exit_func
-    ;;
-    * )
+    QUESTION_CURRENT=0 # Question current
     clear
-    echo "Error! Try again."
-    menu_func
-    ;;
-esac
+    echo -e "\n************ MENU *************"
+    echo "Hi $NICK, choose... "
+    echo "1. Play! "
+    echo -n "2. Record --> "
+    cat "$LIST_NAME"
+    echo "3. Exit "
+    echo "******************************* "
+    echo -ne "\nchoose: "
+    read menu
+
+    case "$menu" in
+        "1") 
+            play
+            ;;
+        "2")
+            record
+            ;;
+        "3")
+            exit_func
+            ;;
+        * )
+            clear
+            echo "Error! Try again."
+            menu_func
+            ;;
+    esac
 }
 
 
@@ -167,9 +159,9 @@ esac
 play () {
     SUM=0 
     for (( c1=1; c1<c; c1++ ))
-     do
-         b[c1]=0
-     done
+    do
+        b[c1]=0
+    done
     clear
     for (( i=1; i<=10; i++ )) 
     do
@@ -178,80 +170,78 @@ play () {
 }
 
 step () {
-while true
-do
-    (( c++ ))
-    FILE_NAME=$(( ( RANDOM % $QUESTION_AMT ) + 1 ))
-    b[c]=$FILE_NAME
-    for (( c1=1; c1<c; c1++ )) 
+    while true
     do
-        if [[ "${b[c]}" == "${b[c1]}" ]]
+        (( c++ ))
+        FILE_NAME=$(( ( RANDOM % $QUESTION_AMT ) + 1 ))
+        b[c]=$FILE_NAME
+        for (( c1=1; c1<c; c1++ )) 
+        do
+            if [[ "${b[c]}" == "${b[c1]}" ]]
+            then
+                (( c-- ))
+                step
+            fi
+        done
+        FILE_PATH="question/$FILE_NAME"
+        if [ -f $FILE_PATH ]
         then
-           (( c-- ))
-           step
+            print_question
+            check_answer
         fi
+        clear
     done
-    FILE_PATH="question/$FILE_NAME"
-    if [ -f $FILE_PATH ]
-    then
-        print_question
-        check_answer
-    fi
-    clear
-done
 }
 
 #   function print of question
 print_question () {
-let "QUESTION_CURRENT += 1"
+    let "QUESTION_CURRENT += 1"
 
-if [[ "$FIFTY" == "0" ]]; then
-    echo -n " 50/50 [F]  "
-else
-    echo  -ne "\e[31m 50/50 [F]  \e[0m"
-fi
+    if [[ "$FIFTY" == "0" ]]; then
+        echo -n " 50/50 [F]  "
+    else
+        echo  -ne "\e[31m 50/50 [F]  \e[0m"
+    fi
 
-if [[ "$GOOGLE" == "0" ]]; then
-    echo -n " google [G]  "
-else
-    echo  -ne "\e[31m google [G]  \e[0m"
-fi
+    if [[ "$GOOGLE" == "0" ]]; then
+        echo -n " google [G]  "
+    else
+        echo  -ne "\e[31m google [G]  \e[0m"
+    fi
 
-if [[ "$CHANGE" == "0" ]]; then
-    echo " Change the question  [T]  "
-else
-    echo  -e "\e[31m Change the question  [T]  \e[0m"
-fi
+    if [[ "$CHANGE" == "0" ]]; then
+        echo " Change the question  [T]  "
+    else
+        echo  -e "\e[31m Change the question  [T]  \e[0m"
+    fi
 
-# Poxel cat-i
-echo -en "\n$QUESTION_CURRENT) "    
-while read line
-do
-    echo -e "$line"
-done<$FILE_PATH
+    echo -en "\n$QUESTION_CURRENT) "    
+    while read line
+    do
+        echo -e "$line"
+    done<$FILE_PATH
 }
 
 #   function for check of answer
 check_answer () {
-echo
-echo -n "your answer: "
-read answ
-if [[ "$answ" == "${arr[$FILE_NAME]}"  ]]; then
-    let "SCORE += 100"
-    clear
-    echo -e "\nRight!"
-    echo "your score $NICK: $SCORE"
-if [ "$SCORE" -eq "1000" ]; then
-    clear
-    echo -e "\nYOU WIN!!"
-    max_score_func
-    echo -e "\n\nPress Enter for exit..."
-    read
-    menu_func
-fi
+    echo -ne "\nyour answer: "
+    read answ
+    if [[ "$answ" == "${arr[$FILE_NAME]}"  ]]; then
+        let "SCORE += 100"
+        clear
+        echo -e "\nRight!"
+        echo "your score $NICK: $SCORE"
+        if [ "$SCORE" -eq "1000" ]; then
+            clear
+            echo -e "\nYOU WIN!!"
+            max_score_func
+            echo -e "\n\nPress Enter for exit..."
+            read
+            menu_func
+        fi
 
-    echo -n "Contiune? [Y/n]"
-    read yes_no_1
+        echo -n "Contiune? [Y/n]"
+        read yes_no_1
         case "$yes_no_1" in
             "Y" | "y" | "yes" | "Yes" )
                 continue
@@ -264,26 +254,26 @@ fi
                 echo "not found!"
                 ;;
         esac
-else
-   case "$answ" in
-       "A"|"a"|"B"|"b"|"C"|"c"|"D"|"d")over_func
-           menu_func;;
-   "G" | "g" )
-      google_func
-      ;;
-   "F" | "f" )
-      fifty_func
-      ;;
-   "T" | "t" )
-      change_func
-      ;;
-   * )
-     echo "Answer not found!"  
-     check_answer
-      ;;
-esac
-fi
-    }
+    else
+        case "$answ" in
+            "A"|"a"|"B"|"b"|"C"|"c"|"D"|"d")over_func
+                menu_func;;
+            "G" | "g" )
+                google_func
+                ;;
+            "F" | "f" )
+                fifty_func
+                ;;
+            "T" | "t" )
+                change_func
+                ;;
+            * )
+                echo "Answer not found!"  
+                check_answer
+                ;;
+        esac
+    fi
+}
 
 over_func () {    
     echo -e "\nRight answer: ${arr[$FILE_NAME]}"
@@ -297,16 +287,16 @@ over_func () {
 }
 
 max_score_func () {
-while read line3 
-do
-SUM=$(($SUM+$line3))
-done<$LIST
-if [[ "$SCORE" > "$SUM" ]]; then
-    echo "$SCORE" > $LIST
-    echo "$NICK" > $LIST_NAME
-fi
+    while read line3 
+    do
+        SUM=$(($SUM+$line3))
+    done<$LIST
+    if [[ "$SCORE" > "$SUM" ]]; then
+        echo "$SCORE" > $LIST
+        echo "$NICK" > $LIST_NAME
+    fi
 
 }
 
-nickname
-menu_func
+    nickname
+    menu_func
