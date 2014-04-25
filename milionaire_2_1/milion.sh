@@ -23,9 +23,9 @@ SCORE=0
 FIFTY=0
 GOOGLE=0
 CHANGE=0
-declare -a b
-c=1
-b[1]=0
+declare -a NOT_TO_BE_REPEATED_QUESTION
+NOT_TO_BE_REP_ARRAY_SIZE=1
+NOT_TO_BE_REPEATED_QUESTION[1]=0
 LIST=record/score
 LIST_NAME=record/nick
 
@@ -72,11 +72,9 @@ nickname () {
 google_func () {
     if [ "$GOOGLE" == "0" ]; then
         GOOGLE=1        
-        echo ""
-        xdg-open 'http://www.google.com'
-        sleep 20
-        `pkill chrome`
-        sleep 3
+        `firefox google.com &`
+        sleep 30
+        `pkill firefox`
     fi
     clear
     let "QUESTION_CURRENT -= 1"
@@ -158,9 +156,9 @@ menu_func () {
 #   function for play mode
 play () {
     SUM=0 
-    for (( c1=1; c1<c; c1++ ))
+    for (( c1=1; c1<NOT_TO_BE_REP_ARRAY_SIZE; c1++ ))
     do
-        b[c1]=0
+        NOT_TO_BE_REPEATED_QUESTION[c1]=0
     done
     clear
     for (( i=1; i<=10; i++ )) 
@@ -172,14 +170,14 @@ play () {
 step () {
     while true
     do
-        (( c++ ))
+        (( NOT_TO_BE_REP_ARRAY_SIZE++ ))
         FILE_NAME=$(( ( RANDOM % $QUESTION_AMT ) + 1 ))
-        b[c]=$FILE_NAME
-        for (( c1=1; c1<c; c1++ )) 
+        NOT_TO_BE_REPEATED_QUESTION[NOT_TO_BE_REP_ARRAY_SIZE]=$FILE_NAME
+        for (( c1=1; c1<NOT_TO_BE_REP_ARRAY_SIZE; c1++ )) 
         do
-            if [[ "${b[c]}" == "${b[c1]}" ]]
+            if [[ "${NOT_TO_BE_REPEATED_QUESTION[NOT_TO_BE_REP_ARRAY_SIZE]}" == "${NOT_TO_BE_REPEATED_QUESTION[c1]}" ]]
             then
-                (( c-- ))
+                (( NOT_TO_BE_REP_ARRAY_SIZE-- ))
                 step
             fi
         done
@@ -226,7 +224,7 @@ print_question () {
 check_answer () {
     echo
     if ! read -t 30 -p "Your answer:" answ; then
-        echo -e "\n\n  ***TIME OUT***\n\n" >&2
+        echo -e "\n\n  ***TIME OUT***\n\n" 
         over_func
         menu_func
     fi
@@ -249,6 +247,7 @@ check_answer () {
         read yes_no_1
         case "$yes_no_1" in
             "Y" | "y" | "yes" | "Yes" )
+                clear
                 continue
                 ;;
             "N" | "n" | "No" | "no" )
@@ -261,8 +260,11 @@ check_answer () {
         esac
     else
         case "$answ" in
-            "A"|"a"|"B"|"b"|"C"|"c"|"D"|"d")over_func
+            "A"|"B"|"C"|"D")over_func
                 menu_func;;
+            "a"|"b"|"c"|"d")
+                echo "Only capital letters!"
+                check_answer;;
             "G" | "g" )
                 google_func;;
             "F" | "f" )
