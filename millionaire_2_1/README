@@ -1,0 +1,24 @@
+Game name:   Who wants to be a millionaire
+Version:     2.1
+You can find the new version https://github.com/M7Arman/gitrepo
+
+
+it's indispensable to have:
+    Firefox*
+    
+
+
+
+for play:
+    "bash millionaire.sh" or "./millionaire.sh"
+    And follow the steps
+
+
+What's new:
+    +timer
+    +prompt changes the color
+    +good style code(probably)
+    +and other trifles
+
+
+* Consults not to have open sites in firefox during the game
