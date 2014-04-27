@@ -1,0 +1,4 @@
+
+1. grep to array (example)
+    arr=(`find /xyz/abc/music/ |grep def`)
+    echo ${arr[n]}
