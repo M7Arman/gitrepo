@@ -1,3 +1,11 @@
-1. run sum
-2. input 5 10
-   expected result 15
+run sum 
+input 5 10
+    expected result 15
+
+run erkuakan 
+input 6
+    expected result 110
+
+run factorial 
+input 5 
+    expected result 120
