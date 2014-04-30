@@ -1,0 +1,17 @@
+#!/bin/bash
+
+platform="$1"
+
+if [[ "$1" == 'Linux' ]]; then
+#    source "./Makefile"
+    source "/src/filework.cpp"
+elif [[ "$1" == "Windows" ]]; then
+    source "\...\"
+else
+    echo "Not found!"
+fi
+
+
+
+
+
