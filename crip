@@ -1,4 +1,7 @@
-
 1. grep to array (example)
     arr=(`find /xyz/abc/music/ |grep def`)
     echo ${arr[n]}
+
+2. Problem with language #Jenkins
+    В общем, нужно поставить Locale plugin. В [Настроить Jenkins]/[Конфигурирование системы]/[Locale]
+добавить "en" и отметить checkbox "Ignore browser preference and force this language to all users".
