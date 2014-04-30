@@ -1,0 +1,4 @@
+rule name
+   command= g++  $in -o $out
+
+build exe: name src/filework.cpp

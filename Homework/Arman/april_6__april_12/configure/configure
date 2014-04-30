@@ -1,0 +1,11 @@
+#!/bin/bash
+
+platform="$1"
+
+if [[ "$1" == 'Linux' ]]; then
+    `cd ~/Desktop/configure/ && make`
+elif [[ "$1" == "Windows" ]]; then
+    source "\..."
+else
+    echo Not found!
+fi

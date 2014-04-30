@@ -1,0 +1,1 @@
+/home/arman/Desktop/Cmake_with_Ninja/CMakeFiles/prog.dir

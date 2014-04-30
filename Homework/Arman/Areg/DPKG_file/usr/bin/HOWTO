@@ -1,0 +1,18 @@
+" Pordzel em dzeri het English sovorel, hetevabar karoxa lezvi sxalner linen
+
+1.  apt-get install dpkg-dev     "utility for create deb file
+2.  mkdir tempprog               "create a directory named tempprog
+3.  mkdir -p ./tempprog/usr/bin/ "create parent directory usr and bin
+4.  cd tempprog/usr/bin/         "go inside 
+5.  touch <file_name>            "create a file or move an existing file
+6.  cd ../                       "go back
+7.  cd ../                       "again
+8.  mkdir DEBIAN                 "create a directory named DEBIAN
+9.  cd DEBIAN                    "go inside 
+10. touch control                "create a file named control
+11. sudo vim control             "open the file
+12. .....                        "write content
+13. .....                        "save the file and exit
+14. cd ../                       "go back
+15. dpkg-deb -b ./ ./            "gathering of Debian package
+

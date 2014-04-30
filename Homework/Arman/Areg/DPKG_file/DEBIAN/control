@@ -1,0 +1,10 @@
+Package: Template
+Version: 1.0 
+Architecture: all
+Installed-Size: 1000 kb
+Suggests: file
+Section: system
+Priority: optional
+Homepage: http://habrahabr.ru/
+Description: This is my first debian file
+ This is my first debian file...
