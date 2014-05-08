@@ -1,4 +1,4 @@
-package projectPerson;
+//package ???;
 
 public class Person {
     public ArrayList <String> List = new <String> ArrayList();
