@@ -17,7 +17,7 @@ public class Main {
         System.out.println();   
 
         Теаcher institutTeacher = new Теаcher("Mr. Einstein","physic",42);
-
+        
         institutTeacher.assessStudent(arrayOfStudent[0],6);
         arrayOfStudent[0].lastMark();
         institutTeacher.assessStudent(arrayOfStudent[0],8);
