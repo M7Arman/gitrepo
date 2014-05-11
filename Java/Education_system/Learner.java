@@ -2,7 +2,7 @@
 public class Learner extends Person {
 
 //TODO: private or protected
-    protected int[] mark = {0,0,0,0,0};
+    protected int[] mark = {0,0,0,0,0,0,0,0,0};
     protected int top = 1;
 
 // Metods
