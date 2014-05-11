@@ -11,5 +11,3 @@ obj : $(Source)
 clean : 
 	rm -rf $(obj) prog
 
-#windows :
-#linux :

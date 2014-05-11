@@ -8,14 +8,14 @@ class Теаcher extends Employee {
         age=age1;
     }
 
-    public void assessStudent(Student p,int mark){
-        p.setMark(mark);
+    // student evaluation on behalf of teacher
+    public void assessStudent(Student s1,int mark){
+        s2=s1;
+        s2.setMark(mark);;
 
     }
-
-    @Override
-    public void info(){
-        System.out.println("Theme: " + theme);
+    public void infoTeacher(){
+        System.out.print("\nTeacher(" + theme + "):  ");
+        info();
     }
-
 }

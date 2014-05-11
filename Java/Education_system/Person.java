@@ -6,8 +6,7 @@ public class Person {
 
 // Metods
     public void info(){
-        System.out.println("Name: " + name);
-        System.out.println("Age:  " + age);
+        System.out.println(name + " " + age + " year!");
     }
 
 }
