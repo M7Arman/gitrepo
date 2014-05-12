@@ -1,16 +1,13 @@
-SOURCE := $(wildcard person/*.java)
-BINSOURCE := $(wildcard *.java)
-#OBJ := $(patsubst %.java,%.class,$(Source))
-OBJ := person/*.class
-BIN := *.class
+SOURCE := $(wildcard *.java)
+OBJ := *.class
 JC := javac
 
-compile: $(SOURCE) $(BINSOURCE)
-	$(JC) $(SOURCE) $(BINSOURCE)
+compile: $(SOURCE) 
+	$(JC) $(SOURCE)
 
 
 clean : 
-	    rm $(OBJ) $(BIN)
+	    rm $(OBJ) 
 
 
 
