@@ -3,7 +3,7 @@
  what is it?
  -----------
  
- Is a program written in Java, designed as a homework in ITC.
+ It is a program written in Java, designed as a homework in ITC.
  This program shows the operation of education system, but 
  while there are many bugs.
 
