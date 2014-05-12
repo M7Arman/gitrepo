@@ -1,9 +1,10 @@
 
-class Теаcher extends Employee {
+
+class Teacher extends Employee {
     private Student s2 = new Student("<name>",18);
     private String theme;
 
-    public Теаcher(String name1,String theme, int age1) {
+    public Teacher(String name1,String theme, int age1) {
         name=name1;
         this.theme=theme;
         age=age1;
