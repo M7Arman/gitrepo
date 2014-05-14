@@ -1,38 +1,38 @@
 
 public class BinarySearch {
-    private int mid = 0;                                // sN - searchNumber
-    private int attempt = 0;
+                                                        // sN - searchNumber
+    
     public int search(int[] theArray, int sN) {
         int endPoint = (theArray.length-1);
         int beginPoint = 0;
-
-        while (endPoint > beginPoint){
-            mid = (endPoint + beginPoint)/2;
+        int mid = 0;
+        while (endPoint >= beginPoint){
+            mid = (endPoint + beginPoint) / 2;
             if (sN > theArray[mid])
                 beginPoint = mid+1;
-            else
-            if (sN < theArray[mid])
-                endPoint = mid-1;
-            else
-                return mid;
+            else {
+                if (sN < theArray[mid])
+                    endPoint = mid-1;
+                else
+                    return mid;
+            }
         }
         return -1;
     }
    
     public int search(int[] theArray, int sN, int beginPoint, int endPoint) {
-        mid = (beginPoint + endPoint)/2;
-
-        if (sN == theArray[mid])
-            return mid;
-
-        if (endPoint > beginPoint)
+        if (beginPoint > endPoint)
             return -1;
-
+        int  mid = (beginPoint + endPoint)/2;
+        
         if (sN > theArray[mid])
-            beginPoint = mid+1;
+        return search(theArray, sN, (mid + 1), endPoint);
         else
-            endPoint = mid-1;
-
-        attempt = search(theArray, sN, beginPoint, endPoint);
+            if (sN < theArray[mid])
+                return search(theArray, sN, beginPoint, (mid - 1));
+            else
+                return mid;
     }
+
 }
+
