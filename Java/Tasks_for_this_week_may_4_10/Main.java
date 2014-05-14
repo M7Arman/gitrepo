@@ -4,17 +4,15 @@ import java.math.BigInteger;
 public class Main {
     public static void main(String[] args) {
 
-        int n=20;
+        int n;
 
-        if (args.length >0) {
             try {
                 n=Integer.parseInt(args[0]);
-            } catch (Exception e) {
+            } catch(Exception e) {
                 n=20;
             }
-        }
 
-        FactorialWithCache fac = new FactorialWithCache();
+        Factorial fac = new Factorial();
         BigInteger s;
 
 
