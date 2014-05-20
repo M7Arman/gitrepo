@@ -10,8 +10,8 @@ body {
 h1, h2, h3, h4 {
     color: orange;
     font-weight: normal;
-    line-height: 1.1em;
-    margin: 0 0 .5em 0;
+    line-height: 100px;
+    margin: 0 0 10px 0;
 }
 
 a {
@@ -19,11 +19,21 @@ a {
     text-decoration: none;
 }
 
+
 a:hover,
 a:active{
     text-decoration: underline;
 }
 
+#menu ul li{ 
+   display:inline-block;
+   height: 60px;
+}
+      #menu ul li a {
+         padding: 20px;
+         background: orange;
+         color:white;
+      }
 
 #page {
     margin: 20px;
@@ -35,3 +45,44 @@ a:active{
     font-family: georgia;
     display: inline-block;
 }
+
+#menu {
+   width: 60%;
+   display: inline-block;
+   text-align: right;
+   float: right;
+   margin-right: 40px;
+}
+
+.attemptOne {
+   font-size: 30px;
+}
+
+.attemptTwo {
+   font-size: 14px;
+}
+
+#content {
+   background-color: white;
+   padding: 10px;
+   width: 1020px;
+   padding-left: 25px;
+   clear: both;
+   height: 1000px;
+   margin: inherit;
+}
+
+#footer {
+   padding: 10px 40px;
+   margin-bottom: 10px;
+   background-color: #ddd;
+   border-radius: 25px;
+
+}
+
+   #footer p{
+      text-align: right;
+      text-transform: uppercase;
+      font-size: 80%;
+      color: grey;
+   }
