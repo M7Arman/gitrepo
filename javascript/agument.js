@@ -6,7 +6,7 @@ function myFunction() {
 
       li.appendChild(document.createTextNode(value));
       ul.appendChild(li);
-      //document.getElementById("input").select(""); 
+      document.getElementById("input").value="";
    }
 }
 
