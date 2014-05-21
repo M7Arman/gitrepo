@@ -1,0 +1,34 @@
+body {
+    font-family: arial;
+    font-size: 80%;
+    line-height: 1.2em;
+    width: 100%;
+    margin: 0;
+    background: #eee;
+}
+
+
+div{
+    border:2px solid;
+    border-radius:25px;
+}
+
+#game {
+    width: 650px;
+    height: 650px;
+    margin: auto;
+    background-color: #3333BE;
+}
+
+#game p {
+    font-size: 16;
+    padding: 4;
+    font-weight: bold;
+}
+
+#imageMilionaire {
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin: auto;
+}
