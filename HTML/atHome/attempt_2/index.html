@@ -5,11 +5,13 @@
     <title>My First Website</title>
 
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="time.js"></script>
 
 </head>
 
-<body>
+<body onload="window.setTimeout('getSecs()',1)">
     <div id="page">
+        
         <div id="logo">
             <h1><a href="#" id="logolink">My First Website</a> </h1>
         </div>
@@ -23,6 +25,7 @@
         </div>
 
         <div id="content">
+            <p>Time: <input type="text" size="9" name="timespent"></p>
             <h2>Content name</h2>
             <p>
             <p class="attemptOne">EINSTEIN’S MIRACLE YEAR (1905)</p>
@@ -45,7 +48,7 @@
         </div>
 
         <div id="footer">
-            <p>
+            <p id="demo">
                 Webpage made by <a href="#">{your name}</a>
             </p>
         </div>
