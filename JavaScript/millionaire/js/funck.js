@@ -11,15 +11,19 @@ var jsonQuestion = {
         {"answerA":"The journey", "answerB":"The day", "answerC":"The tunnel", "answerD":"E.T.'s finger"},
     ],
 
+    //"trueAnswer" : [ "4" ]
+
 };
 
 window.onload = function writeQuestion() {
     var questionNumber = 1
     document.getElementById("question").innerHTML = questionNumber + ") " + jsonQuestion.ques[questionNumber-1];
-    document.getElementById("answerOne").innerHTML = "A. " + jsonQuestion.answer[questionNumber-1].answerA;
-    document.getElementById("answerTwo").innerHTML = "B. " + jsonQuestion.answer[questionNumber-1].answerB;
-    document.getElementById("answerThree").innerHTML = "C. " + jsonQuestion.answer[questionNumber-1].answerC;
-    document.getElementById("answerFour").innerHTML = "D. " + jsonQuestion.answer[questionNumber-1].answerD;
-
-
+    document.getElementById("answerOne").innerHTML =/* "A. " +*/ jsonQuestion.answer[questionNumber-1].answerA;
+    document.getElementById("answerTwo").innerHTML = /*"B. " + */jsonQuestion.answer[questionNumber-1].answerB;
+    document.getElementById("answerThree").innerHTML = /*"C. " + */jsonQuestion.answer[questionNumber-1].answerC;
+    document.getElementById("answerFour").innerHTML = /*"D. " + */jsonQuestion.answer[questionNumber-1].answerD;
 }
+/*
+function clickAnswer1() {
+   if ()
+}*/

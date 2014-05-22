@@ -26,6 +26,16 @@ div{
     font-weight: bold;
 }
 
+#answer a {
+   width: 45%;
+   float: left;
+   border: black solid 1px;
+}
+
+#answer p {
+   display: inline-block;
+}
+
 #imageMilionaire {
     width: 300px;
     height: 300px;
