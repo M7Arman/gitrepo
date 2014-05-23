@@ -14,9 +14,9 @@ var jsonQuestion = {
     "trueAnswer" : [ "4" ]
 
 };
+    var questionNumber = 1
 
 window.onload = function writeQuestion() {
-    var questionNumber = 1
     document.getElementById("question").innerHTML = questionNumber + ") " + jsonQuestion.ques[questionNumber-1];
     document.getElementById("answerOne").innerHTML =/* "A. " +*/ jsonQuestion.answer[questionNumber-1].answerA;
     document.getElementById("answerTwo").innerHTML = /*"B. " + */jsonQuestion.answer[questionNumber-1].answerB;
@@ -24,11 +24,8 @@ window.onload = function writeQuestion() {
     document.getElementById("answerFour").innerHTML = /*"D. " + */jsonQuestion.answer[questionNumber-1].answerD;
 }
 
-answerVariant.onclick = {
-    var answerClass = document.getElementsByClassName('answerVariant');
-    var variant = answerClass.getAttribute("data-id");
-    if(variant == jsonQuestion.trueAnswer[questionNumber-1])
-        alert("Yeh!");
-    else 
-        alert("fuu!");
+function answerVariant(answerVar) {
+    console.log(answerV);
+    var answerV=answervar;
+
 }

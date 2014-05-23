@@ -21,17 +21,15 @@ div{
     background-color: #3333BE;
 }
 
-#game p {
-    font-size: 16;
-    padding: 4;
-    font-weight: bold;
+#game div {
+background-color: black;
+color: white;
 }
-
-#answer a {
+#answer div {
     width: 45%;
     float: left;
-    border: black solid 1px;
-    background-color: orange;
+    margin: 13px;
+    margin-bottom: 2px;
 }
 
 #answer p {
