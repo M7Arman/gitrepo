@@ -11,11 +11,11 @@ var jsonQuestion = {
         {"answerA":"The journey", "answerB":"The day", "answerC":"The tunnel", "answerD":"E.T.'s finger"},
     ],
 
-    "trueAnswer" : [ "4" ]
+    "trueAnswer" : [ "D" ]
 
 };
     var questionNumber = 1
-
+    var score = 0;
 window.onload = function writeQuestion() {
     document.getElementById("question").innerHTML = questionNumber + ") " + jsonQuestion.ques[questionNumber-1];
     document.getElementById("answerOne").innerHTML =/* "A. " +*/ jsonQuestion.answer[questionNumber-1].answerA;
@@ -25,7 +25,21 @@ window.onload = function writeQuestion() {
 }
 
 function answerVariant(answerVar) {
-    console.log(answerV);
-    var answerV=answervar;
+   var answerV=answerVar;
+   console.log(answerV);
+   if (answerV == jsonQuestion.trueAnswer[questionNumber-1])
+      trueAnswer();
+   else
+      falseAnswer();
+}
 
+function trueAnswer() {
+    console.log("YES");
+    score = score + 100;
+    questionNumber++;
+    //writeQuestion;
+}
+
+function falseAnswer() {
+   console.log("NO");
 }
