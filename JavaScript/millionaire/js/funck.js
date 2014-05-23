@@ -1,33 +1,52 @@
-var jsonQuestion = {
-    "ques" : [ 
-        "The main character in the 2000 movie Gladiator fights what animal in the arena?",
-        "According to a proverb about hope, Theres always a light at the end of what?" ,
-        "tam taram tadam tadam",
-        "........."
-    ],
+var questions = [
+   {
+      "questionText" : "The main character in the 2000 movie Gladiator fights what animal in the arena?",
+      "questionAnswer" : [ "A", "B", "C", "D" ],
+      "questionTrueAnswer" : "D",
+   },
 
-    "answer" : [
-        {"answerA":"Leopard", "answerB":"Lion", "answerC":"Jackal", "answerD":"Tiger"},
-        {"answerA":"The journey", "answerB":"The day", "answerC":"The tunnel", "answerD":"E.T.'s finger"},
-    ],
 
-    "trueAnswer" : [ "D" ]
+   {
+      "questionText" : "According to a proverb about hope, Theres always a light at the end of what?",
+      "questionAnswer" : [ "The journey", "The day", "The tunnel", "E.T.'s finger" ],
+      "questionTrueAnswer" : "C",
 
-};
-    var questionNumber = 1
+   },
+
+]
+
+var answerId = [ "answerOne", "answerTwo", "answerThree", "answerFour" ];
+
+
+
+
+
+
+
+
+
+
+
+
+    var questionNumber = 1;
     var score = 0;
-window.onload = function writeQuestion() {
-    document.getElementById("question").innerHTML = questionNumber + ") " + jsonQuestion.ques[questionNumber-1];
-    document.getElementById("answerOne").innerHTML =/* "A. " +*/ jsonQuestion.answer[questionNumber-1].answerA;
-    document.getElementById("answerTwo").innerHTML = /*"B. " + */jsonQuestion.answer[questionNumber-1].answerB;
-    document.getElementById("answerThree").innerHTML = /*"C. " + */jsonQuestion.answer[questionNumber-1].answerC;
-    document.getElementById("answerFour").innerHTML = /*"D. " + */jsonQuestion.answer[questionNumber-1].answerD;
+
+window.onload = function gamePlay () {
+   printQuestion();
+}
+
+function printQuestion() {
+   document.getElementById("question").innerHTML = questionNumber + ") " + questions[1].questionText;
+   for (var i=0; i<4; i++) {
+      document.getElementById(answerId[i]).innerHTML = questions[1].questionAnswer[i];
+   }
+
 }
 
 function answerVariant(answerVar) {
    var answerV=answerVar;
    console.log(answerV);
-   if (answerV == jsonQuestion.trueAnswer[questionNumber-1])
+   if (answerV == questions[1].questionTrueAnswer)
       trueAnswer();
    else
       falseAnswer();
@@ -37,7 +56,7 @@ function trueAnswer() {
     console.log("YES");
     score = score + 100;
     questionNumber++;
-    //writeQuestion;
+    printQuestion();
 }
 
 function falseAnswer() {
