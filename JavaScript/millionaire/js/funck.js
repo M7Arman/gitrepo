@@ -51,30 +51,39 @@ var questions = [
 
     var answerId = [ "answerOne", "answerTwo", "answerThree", "answerFour" ];
 
-    var scoreTable = [ "100","200","300","500","1000","2000","4000","8000","16000","32000",
-    "64000","125000","250000","500000","1000000"]
-
-
+    var scoreTable = [ "1000000","500000","250000","125000","64000","32000","16000","8000","4000","2000",
+    "1000","500","300","200","100"]
 
 
 
     var questionNumber = 1;
     var score = 0;
+    var constScore = 0;
 
-    window.onload = function gamePlay () {
+    window.onload = /*function inputName () {
+        var userName = document.getElementById("nameUser").value;
+
+    }*/
+
+    function gamePlay () {
         createTableScore();
         printQuestion();
     }
 
 function createTableScore() {
-    var ul = document.getElementById("ulId");
+    var ol = document.getElementById("ulId");
     var li = document.createElement("li");
-    for (var i=scoreTable.length-1; i>=0; i--){
+    for (var i = 0; i < scoreTable.length; i++){
+       // setAttribute("class","liClass");
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode("$" + scoreTable[i]))
-            ul.appendChild(li);
+        li.appendChild(document.createTextNode("$ " + scoreTable[i]))
+            ol.appendChild(li);
     }
 }
+
+  //sa veradardzni createTableScore class-i element aysinqn` getLi() senc mi function
+//createTableScore.prototype.
+
 
 function printQuestion() {
     document.getElementById("question").innerHTML = questionNumber + ") " + questions[questionNumber-1].questionText;
@@ -94,8 +103,10 @@ function answerVariant(answerVar) {
 }
 
 function trueAnswer() {
+
     console.log("YES");
-    score = score + 100;
+    score = scoreTable[questionNumber-1];
+    console.log(score);
     questionNumber++;
     printQuestion();
 }

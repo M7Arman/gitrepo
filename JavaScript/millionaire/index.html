@@ -12,23 +12,25 @@
             <div id="game">
                 <img id="imageMilionaire"src="images/millionaire.png">
                 <div id="scoreBoard">
-                    <ul id="ulId">
-                    </ul>
+                    <ol id="ulId" reversed>
+                    </ol>
                 </div>
+                <div id="questionAndAnswer">
                 <div><p id="question"></p></div>
 
-                <div id="answer">
+                <span id="answer">
                     <!--  How to take the first <p> tag?  -->
                     <!-- <a data-id="A" class="answerVariant">A. <p id="answerOne"></p></a>
                     <a data-id="B" class="answerVariant">B. <p id="answerTwo"></p></a>
                     <a data-id="C" class="answerVariant">C. <p id="answerThree"></p></a>
                     <a data-id="D" class="answerVariant">D. <p id="answerFour"></p></a>-->
 
-                    <div onclick="answerVariant('A')">A. <p id="answerOne"></p></div>
-                    <div onclick="answerVariant('B')">B. <p id="answerTwo"></p></div>
-                    <div onclick="answerVariant('C')">C. <p id="answerThree"></p></div>
-                    <div onclick="answerVariant('D')">D. <p id="answerFour"></p></div>
-                </div>
+                    <div onclick="answerVariant('A')"> <p class="answerConst"> A. </p> <p id="answerOne"></p></div>
+                    <div onclick="answerVariant('B')"> <p class="answerConst"> B. </p> <p id="answerTwo"></p></div>
+                    <div onclick="answerVariant('C')"> <p class="answerConst"> C. </p> <p id="answerThree"></p></div>
+                    <div onclick="answerVariant('D')"> <p class="answerConst"> D. </p> <p id="answerFour"></p></div>
+                </span>
+            </div>
             </div>
         </div>
     </body>
