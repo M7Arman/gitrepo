@@ -54,17 +54,44 @@ var questions = [
     var scoreTable = [ "1000000","500000","250000","125000","64000","32000","16000","8000","4000","2000",
     "1000","500","300","200","100"]
 
-
-
     var questionNumber = 1;
     var score = 0;
     var constScore = 0;
 
-    window.onload = /*function inputName () {
-        var userName = document.getElementById("nameUser").value;
+/////////////////////delete Element function//////////////////////////////////
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = 0, len = this.length; i < len; i++) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////
 
-    }*/
 
+
+    window.onload = function inputName () {
+    
+    var buttonId = document.getElementById("button");
+    var parentId = document.getElementById("parent");
+    var nameUserId = document.getElementById("nameUser");
+    var beforeGameId = document.getElementById("beforeGame");
+    
+    buttonId.onclick = function () {
+        
+    var userName = document.getElementById("input").value;
+        console.log(userName);
+
+        nameUserId.remove();
+        beforeGameId.id = "game";
+        gamePlay();
+    }
+
+    }
+    
     function gamePlay () {
         createTableScore();
         printQuestion();
@@ -112,5 +139,6 @@ function trueAnswer() {
 }
 
 function falseAnswer() {
-    console.log("NO");
+    alert("GameOver");
+    document.location.reload(true);
 }

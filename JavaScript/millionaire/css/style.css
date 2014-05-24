@@ -13,6 +13,21 @@ div{
     border-radius:25px;
 }
 
+#beforeGame {
+    visibility: hidden;
+}
+
+#nameUser {
+width: 250px;
+height: 25px;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+}
+
 #game {
     box-shadow: 0px 6px 6px 6px #888888;
     width: 650px;
@@ -40,29 +55,29 @@ font-size: 16px;
  font-size: 15px;
 }
 
-#questionAndAnswer {
+#game #questionAndAnswer {
     border: 0;
     margin-top: 40px;
 }
 
-#answer div {
+#game #answer div {
     width: 45%;
     float: left;
     margin: 13px;
     margin-bottom: 2px;
 }
 
-#answer p {
+#game #answer p {
    display: inline-block;
 }
 
-.answerConst {
+#game .answerConst {
     font-size: 18px;
     margin: inherit;
     color: orange;
 }
 
-#imageMilionaire {
+#game #imageMilionaire {
     width: 300px;
     height: 300px;
     display: block;
