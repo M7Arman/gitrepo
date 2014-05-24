@@ -57,6 +57,8 @@ var questions = [
     var questionNumber = 1;
     var score = 0;
     var constScore = 0;
+    var classScore = 16;
+
 
 /////////////////////delete Element function//////////////////////////////////
 Element.prototype.remove = function() {
@@ -100,9 +102,11 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 function createTableScore() {
     var ol = document.getElementById("ulId");
     var li = document.createElement("li");
+
     for (var i = 0; i < scoreTable.length; i++){
-       // setAttribute("class","liClass");
+        classScore--;
         var li = document.createElement("li");
+        li.setAttribute("id",classScore);
         li.appendChild(document.createTextNode("$ " + scoreTable[i]))
             ol.appendChild(li);
     }
@@ -131,11 +135,28 @@ function answerVariant(answerVar) {
 
 function trueAnswer() {
 
+    //TODO: questionNumber class-in tal color: orange, isk questionNumber-1 color: black;
+    changeStyleCurrentScore();
+    changeStyleLastScore();
     console.log("YES");
     score = scoreTable[questionNumber-1];
     console.log(score);
     questionNumber++;
     printQuestion();
+}
+
+function changeStyleCurrentScore() {
+    var currentScore = document.getElementById(questionNumber).style;
+    currentScore.color = "white";
+    currentScore.backgroundColor = "orange";
+}
+
+function changeStyleLastScore() {
+    if (document.getElementById(questionNumber-1)) {
+        var lastScore = document.getElementById(questionNumber-1).style;
+        lastScore.color = "orange";
+        lastScore.backgroundColor = "black";    
+    }
 }
 
 function falseAnswer() {
