@@ -1,3 +1,9 @@
+
+/*
+function aaa() {
+    return "Hi";
+}
+*/
 var questions = [
 
 {
@@ -90,8 +96,8 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
         nameUserId.remove();
         beforeGameId.id = "game";
         gamePlay();
-    }
 
+        }
     }
     
     function gamePlay () {
@@ -111,10 +117,6 @@ function createTableScore() {
             ol.appendChild(li);
     }
 }
-
-  //sa veradardzni createTableScore class-i element aysinqn` getLi() senc mi function
-//createTableScore.prototype.
-
 
 function printQuestion() {
     document.getElementById("question").innerHTML = questionNumber + ") " + questions[questionNumber-1].questionText;
