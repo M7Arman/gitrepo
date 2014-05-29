@@ -64,6 +64,7 @@ var questions = [
     var score = 0;
     var constScore = 0;
     var classScore = 16;
+    var answerV;
 
 /////////////////////delete Element function//////////////////////////////////
 Element.prototype.remove = function() {
@@ -131,7 +132,7 @@ function TimeOut() {
 }
 */
 function answerVariant(answerVar) {
-    var answerV = answerVar;
+    answerV = answerVar;
     console.log(answerV);
     if (answerV == questions[questionNumber-1].questionTrueAnswer)
         trueAnswer();
@@ -140,13 +141,24 @@ function answerVariant(answerVar) {
 }
 
 function trueAnswer() {
-    changeStyleCurrentScore();
-    changeStyleLastScore();
+    styleChange();
     console.log("YES");
     score = scoreTable[scoreTable.length - questionNumber];
     console.log(score);
     questionNumber++;
     printQuestion();
+}
+
+function styleChange() {
+    changeStyleCurrentScore();
+    changeStyleLastScore();
+
+    document.getElementById(answerV).style.backgroundColor = "green";
+    //setTimeout(changeColor(),100000)
+}
+
+function changeColor() {
+document.getElementById(answerV).style.backgroundColor = "black";
 }
 
 function changeStyleCurrentScore() {
