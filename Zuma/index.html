@@ -1,11 +1,39 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>zuma</title>
+	<script src="js/zuma.js"></script>
 </head>
 
-<body>
-	<script src="js/zuma.js"></script>
-	<h1>Empty!</h1>
+<body onload="init()">
+
+<!--
+    <h1>Empty!</h1>
+    <form action="php/authenticate.php" method="post">
+        Name: <input type="text" name="username">
+        Password: <input type="password" name="password">
+        <input type="submit" value="ADD">
+    </form>
+-->
+    <form id='login' action='php/authenticate.php' method='post'>
+    	<fieldset >
+			<legend>Login</legend>
+			<label for='username' >UserName*:</label>
+			<input type='text' name='username' id='username'  maxlength="50" />
+
+			<label for='password' >Password*:</label>
+			<input type='password' name='password' id='password' maxlength="50" />
+
+			<input type='submit' name='Submit' value='Continue' />
+		</fieldset>
+    	</form>
+
+
+        <h1>Empty!</h1>
+    <h1>Empty!</h1>
+    <h1>Empty!</h1>
+
 
 </body>
 </html>
+

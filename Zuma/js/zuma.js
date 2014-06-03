@@ -7,10 +7,12 @@ function play() {
 	// exit
 }
 
-function Init () {
+function init () {
 	this.factory = new Factory(5,15,15);  // Factory tipi object sarqel
 	this.frog = new Frog(50,50);
 	this.home = new Home(50,150);
+
+	console.log(frog.fire());
 
 }
 
@@ -41,8 +43,6 @@ function Factory (amtBall, xCoord, yCoord) {
 	this.amtBall = amtBall;
 	this.xCoord = xCoord;
 	this.yCoord = yCoord;
-	// amtBall qanaki zangvac sarqel, vor@ parunaki patron tipi objectner
-	// et objectneric yuraqanchyuri colorBall-in tall arjeq colorArray-ic random dzevov
 }
 
 function Home (xCoord,yCoord) {
