@@ -1,18 +1,23 @@
 
 var colorArray = [ "red", "blue", "orange", "green" ];
 
+	var canvas;
+	var context;
+
 function play() {
-	// pley (ashxatacni Init-@)
+	console.log("Yeh!");
+	init();
 	// stop
 	// exit
 }
 
 function init () {
-	this.factory = new Factory(5,15,15);  // Factory tipi object sarqel
-	this.frog = new Frog(50,50);
-	this.home = new Home(50,150);
+	canvas = document.getElementById('myCanvas');
+	context = canvas.getContext('2d');
+	this.factory = new Factory(5,50,50);  // Factory tipi object sarqel
+	this.frog = new Frog(200,200);
+	this.home = new Home(100,100);
 
-	console.log(frog.fire());
 
 }
 
@@ -20,34 +25,60 @@ function init () {
 function Frog (x,y) {
 	this.x = x;
 	this.y = y;
+	this.patron = new Ball(this.x,this.y);
+
+/*	var myImg = new Image();
+	myImg.src='images/gun.png';
+	console.log(myImg.src);
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+	console.log(c);
+	console.log(ctx);
+		myImg.onload = function () {
+		ctx.drawImage(myImg,this.x,this.y,45,25);
+	}*/
 }
 
 Frog.prototype.fire = function () {
-	return this.x;
+	this.patron = new Ball(this.x,this.y);
 }
 
-function Ball () {
-	this.r = 10 // sharavix
-	this.v = 20 // aragutyun
-	// var colorBall
+
+
+function Ball (beginCenterX, beginCenterY) {
+
+	var centerX; 
+	var centerY; 
+	this.radius = 15; // sharavix
+	  /*context.beginPath();
+      context.arc(centerX, centerY, this.radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = '#003300';
+      context.stroke();*/
 }
 
-var patron = new Ball();
-var spanvox = new Ball();
 
-patron.boom = function () {
-	// traqel
-}
-
-function Factory (amtBall, xCoord, yCoord) {
+function Factory (amtBall, factoryXCoord, factoryYCoord) {
 	this.amtBall = amtBall;
-	this.xCoord = xCoord;
-	this.yCoord = yCoord;
+	this.xCoord = factoryXCoord;
+	this.yCoord = factoryYCoord;
+	this.spanvox = new Ball(this.x,this.y);
+
 }
 
-function Home (xCoord,yCoord) {
-	this.xCoord = xCoord;
-	this.yCoord = yCoord;
+function Home (homeXCoord,homeYCoord) {
+	this.xCoord = homeXCoord;
+	this.yCoord = homeYCoord;
+	console.log(this.xCoord,this.yCoord);
+	var homeImage = new Image();
+	homeImage.src='http://habrahabr.ru/i/nocopypast.png'; //http://jsfiddle.net/shpaker/uwCFS/
+	context.clearRect(100,100,500,500);
+	homeImage.onload = function () {
+		context.drawImage(homeImage,0,0);
+	}
 }
+
 
 

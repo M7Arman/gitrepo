@@ -3,18 +3,11 @@
 <head>
 	<title>zuma</title>
 	<script src="js/zuma.js"></script>
+    <link rel="stylesheet" href="css/zuma.css">
 </head>
 
-<body onload="init()">
+<body >
 
-<!--
-    <h1>Empty!</h1>
-    <form action="php/authenticate.php" method="post">
-        Name: <input type="text" name="username">
-        Password: <input type="password" name="password">
-        <input type="submit" value="ADD">
-    </form>
--->
     <form id='login' action='php/authenticate.php' method='post'>
     	<fieldset >
 			<legend>Login</legend>
@@ -28,12 +21,12 @@
 		</fieldset>
     	</form>
 
+        <!--<div id="game"> -->
+            <div id="menuGame"><input type="button" value="play!" onclick="play()"></div>
+        <canvas id="myCanvas">
 
-        <h1>Empty!</h1>
-    <h1>Empty!</h1>
-    <h1>Empty!</h1>
-
-
+        </canvas>
+        <!-- </div>-->
 </body>
 </html>
 
