@@ -10,6 +10,12 @@ function play() {
 	// exit
 }
 
+////////////////////////////////////////////////////////////
+function refresh () {
+	
+}
+////////////////////////////////////////////////////////////
+
 function init () {
 	canvas = document.getElementById('myCanvas');
 	context = canvas.getContext('2d');
@@ -19,7 +25,7 @@ function init () {
 	this.factory = new Factory(5,30,30);  // Factory tipi object sarqel
 	this.frog = new Frog(300,300);
 	this.home = new Home(640,10);
-	this.ball = new Ball(310,340);
+	canvas.addEventListener("click", frog.fire, false);
 
 
 }
@@ -41,8 +47,12 @@ function Frog (x,y) {
 }
 
 Frog.prototype.fire = function () {
-	this.patron = new Ball(this.x,this.y);
+	var patronXCoord = this.x + 10;
+	var patronYCoord = this.y + 10;
+	console.log("height");
+	this.patron = new Ball(patronXCoord,patronYCoord);
 }
+
 
 
 
@@ -68,16 +78,20 @@ function Factory (amtBall, factoryXCoord, factoryYCoord) {
 	console.log(factoryXCoord);
 	console.log(factoryYCoord);
 	//this.spanvox = new Ball(this.x,this.y);
-	var factoryImage = new Image();
-	factoryImage.src = 'images/factory.png';
-	console.log(factoryImage.src);
-	factoryImage.onload = function () {
+		var factoryImage = new Image();
+		factoryImage.src = 'images/factory.png';
+		console.log(factoryImage.src);
+		factoryImage.onload = function () {
 			console.log(factoryXCoord);
-	console.log(factoryYCoord);
-		context.drawImage(factoryImage, factoryXCoord, factoryYCoord, 80, 80);
-	}
-
+			console.log(factoryYCoord);
+			context.drawImage(factoryImage, factoryXCoord, factoryYCoord, 80, 80);
+		}
 }
+
+Factory.prototype.runSpanvox = function () {
+	console.log("yes-yes");
+}
+
 
 function Home (homeXCoord,homeYCoord) {
 	this.xCoord = homeXCoord;
