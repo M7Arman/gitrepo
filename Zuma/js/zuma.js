@@ -21,17 +21,25 @@ function refresh () {
 	
 	console.log("I");
 	refresh.foo();
-console.log("I");
+	refresh.fugu();
 
 }
 
 refresh.foo = function () {
-	console.log("mutu!");
+	console.log("LOOKME!");
 		if(false) {
 		clearInterval(id);
 	}
 
-	var id = setInterval(foo, 1000)
+	var id = setInterval(refresh.foo, 1000);
+}
+
+refresh.fugu = function () {
+	console.log("LOOKME.TOO");
+	if(false) {
+		clearInterval(id);
+	}
+	var id = setInterval(refresh.fugu, 1000);
 }
 ////////////////////////////////////////////////////////////
 
