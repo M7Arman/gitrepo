@@ -3,6 +3,12 @@ var colorArray = [ "red", "blue", "orange", "green" ];
 	var canvas;
 	var context;
 
+	var arrayCaptive = {};
+	var arrayCaptiveCounter = 0;
+
+	var arrayPatron = {};
+	var arrayPatronCounter = 0;
+
 function play() {
 	console.log("Yeh!");
 	init();
@@ -13,6 +19,19 @@ function play() {
 ////////////////////////////////////////////////////////////
 function refresh () {
 	
+	console.log("I");
+	refresh.foo();
+console.log("I");
+
+}
+
+refresh.foo = function () {
+	console.log("mutu!");
+		if(false) {
+		clearInterval(id);
+	}
+
+	var id = setInterval(foo, 1000)
 }
 ////////////////////////////////////////////////////////////
 
@@ -25,9 +44,8 @@ function init () {
 	this.factory = new Factory(5,30,30);  // Factory tipi object sarqel
 	this.frog = new Frog(300,300);
 	this.home = new Home(640,10);
-	canvas.addEventListener("click", frog.fire, false);
-
-
+	canvas.addEventListener("click", frog.addPatron, false);
+	refresh();
 }
 
 
@@ -46,14 +64,13 @@ function Frog (x,y) {
 	}
 }
 
-Frog.prototype.fire = function () {
+Frog.prototype.addPatron = function () {
 	var patronXCoord = this.x + 10;
 	var patronYCoord = this.y + 10;
 	console.log("height");
-	this.patron = new Ball(patronXCoord,patronYCoord);
+	arrayPatron[arrayPatronCounter] = new Ball(patronXCoord,patronYCoord);
+
 }
-
-
 
 
 function Ball (beginCenterX, beginCenterY) {
@@ -77,7 +94,7 @@ function Factory (amtBall, factoryXCoord, factoryYCoord) {
 	this.yCoord = factoryYCoord;
 	console.log(factoryXCoord);
 	console.log(factoryYCoord);
-	//this.spanvox = new Ball(this.x,this.y);
+	//this.captive = new Ball(this.x,this.y);
 		var factoryImage = new Image();
 		factoryImage.src = 'images/factory.png';
 		console.log(factoryImage.src);
@@ -88,8 +105,13 @@ function Factory (amtBall, factoryXCoord, factoryYCoord) {
 		}
 }
 
-Factory.prototype.runSpanvox = function () {
-	console.log("yes-yes");
+
+//QUESTION: vortexic kanchem addCaptive metod@
+Factory.prototype.addCaptive = function () {
+	var captiveXCoord = this.xCoord + 10;
+	var captiveYCoord = this.yCoord + 10;
+	console.log("width");
+	arrayCaptive[arrayCaptiveCounter] = new Ball(captiveXCoord, captiveYCoord);
 }
 
 
