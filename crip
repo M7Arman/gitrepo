@@ -5,3 +5,6 @@
 2. Problem with language #Jenkins
     В общем, нужно поставить Locale plugin. В [Настроить Jenkins]/[Конфигурирование системы]/[Locale]
 добавить "en" и отметить checkbox "Ignore browser preference and force this language to all users".
+
+3. JavaScript (setInterval and prototype)
+http://stackoverflow.com/questions/2001920/calling-a-class-prototype-method-by-a-setinterval-event
