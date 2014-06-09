@@ -1,12 +1,12 @@
 body {
 	background-color: #E5E4E2;
 }
-/*
+
 #game {
 	margin: 0px auto 0px auto;
-	height: 500px;
-	width: 550px;
-}*/
+	height: 700px;
+	width: 750px;
+}
 canvas {
 	background-color: white;
 	/*height: 800px;

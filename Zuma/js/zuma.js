@@ -41,11 +41,21 @@ var speedUpCaptiveSetInterval = runCaptiveSetInterval/10;
 var addCaptiveSetInterval = 2 * ballRadius / (speed.captive.x / runCaptiveSetInterval);
 ///////////////////////////////////////////////////////////////////////////////////
 var bool = true;
+var refreshStop = false;
 
 function play() {
 	init();
-	// stop
 	// exit
+}
+function stop() {
+	refreshStop = true;
+	for (var k = 0; k < arrayCaptive.length; k++) {
+		arrayCaptive[k].runCaptiveStop = true;
+	}
+	for (var k = 0; k < arrayPatron.length; k++) {
+		arrayPatron[k].fireStop = true;
+	}
+
 }
 	
 function init () {
@@ -73,7 +83,7 @@ canvas.onclick = this.init;
 function refresh () {
 	//console.log("refresh!");
 	
-	if(false) {
+	if(refreshStop) {
 		return;
 	}
 	termsBall();
@@ -99,18 +109,8 @@ function termsBall () {
 				removePatron = arrayPatron.splice(j,1);
 				arrayPatronCounter--;
 
-				console.log(i);
-				for (var k = 0; k < arrayCaptive.length; k++) {
-					console.log("first for!");
-					arrayCaptive[k].runCaptiveStop = true;
-					if (k < i) {
-						arrayCaptive[k].speedUpCaptive();
-					}
-				}/*
-				while (true) {
-					if(speedUpCaptiveCount == 0)
-						break;
-				}*/
+				texBacel(i);	
+
 				for (var k = 0; k < arrayCaptive.length; k++) {
 						arrayCaptive[k].runCaptiveStop = false;
 					}
@@ -118,6 +118,16 @@ function termsBall () {
 		}
 	}
 }
+// Captive-neri mej tex bacel patroni hamar
+function texBacel(i) {
+	for (var k = 0; k < arrayCaptive.length; k++) {
+		arrayCaptive[k].runCaptiveStop = true;
+		if (k < i) {
+			arrayCaptive[k].speedUpCaptive();
+		}
+	}
+}
+
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -128,6 +138,7 @@ function Ball (initialX, initialY) {
 	this.y = initialY;
 	this.runCaptiveStop = false;
 	this.fireStop = false;
+	this.veragrelTeChe = true;
 	this.radius = ballRadius;
 	this.drawBall();
 }
@@ -152,17 +163,6 @@ Ball.prototype.clearBall = function () {
     context.strokeStyle = '#fff';
     context.stroke();
 }
-/*
-Ball.prototype.termsBall = function () {
-	for (; i < arrayCaptive.length; i++) {
-		var hx = (this.x - arrayCaptive[i].x);
-		var hy = (this.y - arrayCaptive[i].y);
-		if ( ((0 < hx) && (hx < this.radius)) && ((0 < hy) && (hy < this.radius)) ) {
-			console.log("0 < ", (this.x - arrayCaptive[i].x), " < ", this.radius);
-			console.log("0 < ", (this.y - arrayCaptive[i].y), " < ", this.radius);		
-		}
-	};
-}*/
 
 // runPatron() or fire()
 Ball.prototype.fire = function () {
@@ -174,20 +174,24 @@ Ball.prototype.fire = function () {
 	t.x = t.x + speed.patron.x; 
 	t.y = t.y + speed.patron.y;
 	t.drawBall();
-	//terms
-	//t.termsBall();
 
 	setTimeout(function(){t.fire();}, fireSetInterval);
 }
 
 Ball.prototype.speedUpCaptive = function () {
 	var itIs = this;
+
+	if (itIs.veragrelTeChe) {
+		itIs.hashvich = speedUpCaptiveCount;
+		itIs.veragrelTeChe = false;
+	}
+	itIs.hashvich--;
 	itIs.clearBall();
 	itIs.x = itIs.x + speed.captive.x;
 	itIs.y = itIs.y + speed.captive.y;
 	itIs.drawBall();
-	speedUpCaptiveCount--;
-	while(!speedUpCaptiveCount){
+	if (itIs.hashvich == 0){
+		itIs.veragrelTeChe = true;
 		return;
 	}
 	setTimeout(function(){itIs.speedUpCaptive();}, speedUpCaptiveSetInterval);
@@ -197,7 +201,6 @@ Ball.prototype.speedUpCaptive = function () {
 Ball.prototype.runCaptive = function () {
 	var aBall = this;
 	while (aBall.runCaptiveStop) {
-		console.log("hey!");
 	}
 	aBall.clearBall();
 	aBall.x = aBall.x + speed.captive.x;
