@@ -29,7 +29,7 @@ var initialYOfPatron = 0;
 var initialXOfCaptive = 0;
 var initialYOfCaptive = 0;
 var ballRadius = 15;
-//TODO: ??
+
 var speedUpCaptiveCount = 2 * ballRadius / speed.captive.x;
 
 //////////////////////////*TIMES*//////////////////////////////////////////////////
@@ -66,9 +66,11 @@ function init () {
 	this.frog = new Frog(300,300);
 	this.home = new Home(640,10);
 	factory.addCaptive();
+	frog.addPatron();
 	refresh();
 	} else {
 	//WHY: don't work with "this"
+	arrayPatron[arrayPatronCounter - 1].fire();
 	frog.addPatron();
 	}
 }
@@ -82,38 +84,23 @@ canvas.onclick = this.init;
 // or terms ()
 function refresh () {
 	//console.log("refresh!");
-	
 	if(refreshStop) {
 		return;
 	}
 	termsBall();
-	/*for (; i < arrayCaptive.length; i++) {
-		//for (var j = 0; j < arrayPatron.length; j++) {
-			console.log(i);
-		//};
-	}*/
-
-
-	this.ID = setTimeout(refresh, refreshSetInterval);
+	setTimeout(refresh, refreshSetInterval);
 }
 
 function termsBall () {
 	for (var i = 0; i < arrayCaptive.length; i++) {
 		for (var j = 0; j < arrayPatron.length; j++) {
-			var hx = (arrayPatron[j].x - arrayCaptive[i].x);
-			var hy = (arrayPatron[j].y - arrayCaptive[i].y);
-			if ( ((-3 <= hx) && (hx <= ballRadius+3)) && ((-3 <= hy) && (hy <= ballRadius+3)) ) {
+			var dx = (arrayPatron[j].x - arrayCaptive[i].x);
+			var dy = (arrayPatron[j].y - arrayCaptive[i].y);
+			if ( ((-3 <= dx) && (dx <= ballRadius+3)) && ((-3 <= dy) && (dy <= ballRadius+3)) ) {
 
-				arrayPatron[j].clearBall();
-				arrayPatron[j].fireStop = true;
-				removePatron = arrayPatron.splice(j,1);
-				arrayPatronCounter--;
-
-				texBacel(i);	
-
-				for (var k = 0; k < arrayCaptive.length; k++) {
-						arrayCaptive[k].runCaptiveStop = false;
-					}
+				texBacel(i);
+				addBacvacTexum(i,j);
+				//TODO: BOOM or don't BOOM
 			}
 		}
 	}
@@ -126,8 +113,24 @@ function texBacel(i) {
 			arrayCaptive[k].speedUpCaptive();
 		}
 	}
+	for (var k = 0; k < arrayCaptive.length; k++) {
+		arrayCaptive[k].runCaptiveStop = false;
+	}
 }
+function addBacvacTexum(i,j) {
+	arrayPatron[j].clearBall();
+	arrayPatron[j].fireStop = true;
+	delete arrayPatron[j].fire();
+	arrayPatronCounter--;
+				
+	arrayCaptive.splice(i - 1, 0, arrayPatron[j]);
+	removePatron = arrayPatron.splice(j,1);
 
+	arrayCaptive[i - 1].x = arrayCaptive[i].x;
+	arrayCaptive[i - 1].y = arrayCaptive[i].y;
+	arrayCaptive[i - 1].runCaptive();
+	arrayCaptiveCounter++;
+}
 ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
@@ -226,8 +229,8 @@ Frog.prototype.addPatron = function () {
 	var patronXCoord = this.x + 100;
 	var patronYCoord = this.y + 100;
 	var currentPatron = new Ball(patronXCoord,patronYCoord);
+	currentPatron.drawBall();
 	arrayPatron.push(currentPatron);
-	arrayPatron[arrayPatronCounter].fire();
 	arrayPatronCounter++;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,18 +249,16 @@ function Factory (factoryXCoord, factoryYCoord) {
 
 Factory.prototype.addCaptive = function () {
 	var it = this
-	//TODO: sxal a amen angam it.i darnuma 0
 	var captiveXCoord = it.xCoord + 50;
 	var captiveYCoord = it.yCoord + 50;
-
-	if(it.stop) {
+	level1--;
+	if(level1 == 0) {
 		return;
 	}
 	var currentCaptive = new Ball(captiveXCoord, captiveYCoord);
 	arrayCaptive.push(currentCaptive);
 	arrayCaptive[arrayCaptiveCounter].runCaptive();
 	arrayCaptiveCounter++;
-	//TODO: avelacnel x hat
 	setTimeout(function(){it.addCaptive();}, addCaptiveSetInterval);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
